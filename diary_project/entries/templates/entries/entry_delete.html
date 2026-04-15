@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Удаление записи</h2>
+
+<div class="card p-4">
+    <p>Ты уверен, что хочешь удалить:</p>
+    <h5>{{ object.title }}</h5>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'entry_detail' object.id %}" class="btn btn-outline-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

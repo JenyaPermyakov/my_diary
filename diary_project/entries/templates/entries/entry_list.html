@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Список записей{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Мои записи</h2>
+
+{% for entry in entries %}
+<div class="card p-3 mb-3">
+    <h5>{{ entry.title }}</h5>
+    <p>{{ entry.content|truncatewords:15 }}</p>
+    <small class="text-muted">{{ entry.date_created }}</small>
+
+    <div class="mt-2">
+        <a href="{% url 'entry_detail' entry.id %}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+        <a href="{% url 'entry_edit' entry.id %}" class="btn btn-sm btn-outline-primary">Редактировать</a>
+        <a href="{% url 'entry_delete' entry.id %}" class="btn btn-sm btn-outline-danger">Удалить</a>
+    </div>
+</div>
+{% empty %}
+<p>Записей пока нет</p>
+{% endfor %}
+
+{% endblock %}

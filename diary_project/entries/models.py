@@ -12,7 +12,7 @@ class Entry(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     date_created = models.DateTimeField(default=timezone.now)
-    time_limit = models.DateTimeField(default=0)
+    time_limit = models.DateTimeField(null=True, blank=True)
 
     status = models.CharField(
         max_length=20,
