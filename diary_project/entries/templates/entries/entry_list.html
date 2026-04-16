@@ -3,12 +3,28 @@
 {% block title %}Список записей{% endblock %}
 
 {% block content %}
-<h2 class="mb-4">Мои записи</h2>
+<h2 class="mb-4">Планы</h2>
 
 {% for entry in entries %}
 <div class="card p-3 mb-3">
     <h5>{{ entry.title }}</h5>
+
     <p>{{ entry.content|truncatewords:15 }}</p>
+
+    <p class="mb-1">
+        <span class="badge
+            {% if entry.status == 'new' %}
+                bg-secondary
+            {% elif entry.status == 'progress' %}
+                bg-warning text-dark
+            {% elif entry.status == 'done' %}
+                bg-success
+            {% endif %}
+        ">
+            {{ entry.get_status_display }}
+        </span>
+    </p>
+
     <small class="text-muted">{{ entry.date_created }}</small>
 
     <div class="mt-2">
@@ -20,5 +36,40 @@
 {% empty %}
 <p>Записей пока нет</p>
 {% endfor %}
+{% if is_paginated %}
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
 
+        <!-- Назад -->
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                ←
+            </a>
+        </li>
+        {% endif %}
+
+        <!-- Номера страниц -->
+        {% for num in page_obj.paginator.page_range %}
+        <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% endfor %}
+
+        <!-- Вперёд -->
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                →
+            </a>
+        </li>
+        {% endif %}
+
+    </ul>
+</nav>
+
+<p class="text-center text-muted">
+    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+</p>
+{% endif %}
 {% endblock %}

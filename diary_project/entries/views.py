@@ -12,6 +12,7 @@ class EntryListView(ListView):
     template_name = "entries/entry_list.html"
     context_object_name = "entries"
     ordering = "-id"
+    paginate_by = 4
 
 class EntryCreateView(CreateView):
     model = Entry
