@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class Entry(models.Model):
 
@@ -8,7 +11,7 @@ class Entry(models.Model):
         ("progress", "В процессе"),
         ("done", "Завершена"),
     ]
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     content = models.TextField()
     date_created = models.DateTimeField(default=timezone.now)
