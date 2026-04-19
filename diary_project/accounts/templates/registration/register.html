@@ -22,19 +22,25 @@
                 <!-- Username -->
                 <div class="mb-3">
                     <label class="form-label">Имя пользователя</label>
-                    <input type="text" name="username" class="form-control">
+                    {{ form.username }}
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    {{ form.email }}
                 </div>
 
                 <!-- Password -->
                 <div class="mb-3">
                     <label class="form-label">Пароль</label>
-                    <input type="password" name="password1" class="form-control">
+                    {{ form.password1 }}
                 </div>
 
                 <!-- Password confirm -->
                 <div class="mb-3">
                     <label class="form-label">Подтверждение пароля</label>
-                    <input type="password" name="password2" class="form-control">
+                    {{ form.password2 }}
                 </div>
 
                 <button type="submit" class="btn btn-dark w-100">

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h3 class="mb-4 text-center">Профиль</h3>
+
+            <p><strong>Логин:</strong> {{ user.username }}</p>
+            <p><strong>Имя:</strong> {{ user.first_name }}</p>
+            <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+
+            <hr>
+
+            <p>
+                <strong>Телефон:</strong>
+                {% if user.profile.phone %}
+                    {{ user.profile.phone }}
+                {% else %}
+                    <span class="text-muted">не указан</span>
+                {% endif %}
+            </p>
+
+            {% if user.profile.avatar %}
+                <div class="text-center mt-3">
+                    <img src="{{ user.profile.avatar.url }}" class="img-fluid rounded" width="200">
+                </div>
+            {% else %}
+                <p class="text-muted text-center mt-3">Аватар не загружен</p>
+            {% endif %}
+
+            <div class="mt-4 d-flex gap-2">
+                <a href="{% url 'profile_edit' %}" class="btn btn-outline-primary">
+                    Редактировать профиль
+                </a>
+
+                <a href="{% url 'password_change' %}" class="btn btn-outline-secondary">
+                    Сменить пароль
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование профиля{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card p-4">
+            <h3 class="mb-4 text-center">Редактирование профиля</h3>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.errors }}
+                    </div>
+                {% endif %}
+
+                <!-- Имя -->
+                <div class="mb-3">
+                    <label class="form-label">Имя</label>
+                    {{ form.first_name }}
+                </div>
+
+                <!-- Фамилия -->
+                <div class="mb-3">
+                    <label class="form-label">Фамилия</label>
+                    {{ form.last_name }}
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    {{ form.email }}
+                </div>
+
+                <hr>
+
+                <!-- Телефон -->
+                <div class="mb-3">
+                    <label class="form-label">Телефон</label>
+                    {{ form.phone }}
+                </div>
+
+                <!-- Аватар -->
+                <div class="mb-3">
+                    <label class="form-label">Аватар</label>
+                    {{ form.avatar }}
+                </div>
+
+                <!-- Текущий аватар -->
+                {% if user.profile.avatar %}
+                    <div class="mb-3 text-center">
+                        <p class="text-muted">Текущий аватар:</p>
+                        <img src="{{ user.profile.avatar.url }}" class="img-fluid rounded" width="150">
+                    </div>
+                {% endif %}
+
+                <!-- Кнопка -->
+                <button type="submit" class="btn btn-dark w-100">
+                    Сохранить изменения
+                </button>
+
+                <!-- Назад -->
+                <div class="mt-3 text-center">
+                    <a href="{% url 'profile' %}" class="text-muted">
+                        Назад к профилю
+                    </a>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

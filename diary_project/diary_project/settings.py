@@ -56,7 +56,7 @@ ROOT_URLCONF = 'diary_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,3 +121,6 @@ STATIC_URL = 'static/'
 LOGIN_REDIRECT_URL = 'entry_list'
 
 LOGOUT_REDIRECT_URL = 'entry_list'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
