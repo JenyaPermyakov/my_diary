@@ -23,8 +23,14 @@ class Entry(models.Model):
         default = "new",
     )
 
+    is_deleted = models.BooleanField(default=False)
+
     def __str__(self):
         return self.title
+
+    def delete(self, *args, **kwargs):
+        self.is_deleted = True
+        self.save()
 
     class Meta:
         verbose_name_plural = 'Entries'

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Удалённые записи</h2>
+
+{% for entry in entries %}
+<div class="card p-3 mb-3">
+
+    <h5>{{ entry.title }}</h5>
+    <p>{{ entry.content|truncatewords:15 }}</p>
+
+    <div class="mt-2">
+        <a href="{% url 'entry_restore' entry.id %}" class="btn btn-sm btn-success">
+            Восстановить
+        </a>
+
+        <a href="{% url 'entry_hard_delete' entry.id %}" class="btn btn-sm btn-danger">
+            Удалить навсегда
+        </a>
+    </div>
+
+</div>
+{% empty %}
+<p>Корзина пуста</p>
+{% endfor %}
+
+{% endblock %}
