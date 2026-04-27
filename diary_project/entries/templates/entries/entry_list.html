@@ -27,6 +27,9 @@
 
     <small class="text-muted">{{ entry.date_created }}</small>
 
+    <!-- 👇 ДОБАВЛЕНО -->
+    <p class="text-muted mb-1">Автор: {{ entry.user.username }}</p>
+
     <div class="mt-2">
         <a href="{% url 'entry_detail' entry.id %}" class="btn btn-sm btn-outline-secondary">Подробнее</a>
         <a href="{% url 'entry_edit' entry.id %}" class="btn btn-sm btn-outline-primary">Редактировать</a>
@@ -36,11 +39,11 @@
 {% empty %}
 <p>Записей пока нет</p>
 {% endfor %}
+
 {% if is_paginated %}
 <nav class="mt-4">
     <ul class="pagination justify-content-center">
 
-        <!-- Назад -->
         {% if page_obj.has_previous %}
         <li class="page-item">
             <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
@@ -49,14 +52,12 @@
         </li>
         {% endif %}
 
-        <!-- Номера страниц -->
         {% for num in page_obj.paginator.page_range %}
         <li class="page-item {% if page_obj.number == num %}active{% endif %}">
             <a class="page-link" href="?page={{ num }}">{{ num }}</a>
         </li>
         {% endfor %}
 
-        <!-- Вперёд -->
         {% if page_obj.has_next %}
         <li class="page-item">
             <a class="page-link" href="?page={{ page_obj.next_page_number }}">
