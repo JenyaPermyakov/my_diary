@@ -1,0 +1,42 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$demo$JCSQjZ7b8XJRtqO1C4doAmd5BeD71C0iBrfqL58EQX8=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "demo",
+      "first_name": "Demo",
+      "last_name": "User",
+      "email": "demo@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-04-27T06:57:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "entries.entry",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "title": "Первая запись",
+      "content": "Пример записи дневника для проверки списка, просмотра и пагинации.",
+      "date_created": "2026-04-27T06:57:00Z",
+      "time_limit": null,
+      "status": "new",
+      "is_deleted": false
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "phone": "77777777777",
+      "avatar": ""
+    }
+  }
+]

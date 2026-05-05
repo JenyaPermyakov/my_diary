@@ -5,12 +5,12 @@
 {% block content %}
 
 <div class="row justify-content-center">
-    <div class="col-md-5">
+    <div class="col-12">
 
-        <div class="card p-4">
+        <div class="card p-4 auth-card">
             <h3 class="mb-4 text-center">Регистрация</h3>
 
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 {% if form.errors %}
@@ -29,6 +29,16 @@
                 <div class="mb-3">
                     <label class="form-label">Email</label>
                     {{ form.email }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Телефон</label>
+                    {{ form.phone }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Аватар</label>
+                    {{ form.avatar }}
                 </div>
 
                 <!-- Password -->
